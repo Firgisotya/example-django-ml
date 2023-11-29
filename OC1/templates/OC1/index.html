@@ -1,0 +1,278 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head_title %} {{title}} 
+{% endblock head_title %} 
+{% block content %}
+<div class="p-4 sm:ml-64">
+  <!-- <div class="block bg-white rounded-lg p-4 shadow-lg">
+
+        <form method="GET" action="{% url 'index' %}">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" value="{{ request.GET.start_date }}">
+            
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" value="{{ request.GET.end_date }}">
+            
+            <button type="submit">Apply Filter</button>
+            <a href="{% url 'index' %}" class="btn-reset">Reset Filter</a>
+        </form>
+        
+
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Lotno
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Prod Order
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Time
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Counter
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Value
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Avg
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Min
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Max
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for item in bpd_oc1 %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td class="px-6 py-4">
+                        {{ item.lotno1 }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ item.prod_order1 }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ item.time }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ item.counter }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ item.value }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ item.avg }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ item.min }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ item.max }}
+                    </td>
+                </tr>
+                {% endfor %}
+                    
+                
+            </tbody>
+        </table>
+    </div> -->
+
+  <div class="block bg-white mt-4 rounded-lg p-4 shadow-lg">
+    <div class="flex flex-row gap-2">
+      <div
+        class="w-1/5 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      >
+        <form method="GET" action="{% url 'index' %}">
+          <div class="mb-6">
+            <label
+              for="start_date"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Start Date</label
+            >
+            <input
+              type="date"
+              name="start_date"
+              id="start_date"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value="{{ request.GET.start_date }}"
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              for="end_date"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >End Date</label
+            >
+            <input
+              type="date"
+              name="end_date"
+              id="end_date"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              value="{{ request.GET.end_date }}"
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              for="column"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Column</label
+            >
+            <select
+              id="column"
+              name="column"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option value="lotno">Lotno</option>
+              <option value="prod_order">Prod Order</option>
+              <option value="time">Time</option>
+              <option value="counter">Counter</option>
+              <option value="value">Value</option>
+              <option value="avg">Avg</option>
+              <option value="min">Min</option>
+              <option value="max">Max</option>
+            </select>
+          </div>
+          <div class="mb-6">
+            <label
+              for="parameters"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Parameters</label
+            >
+            <select id="parameters" name="parameters" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="toggleParametersFields()">
+                <option value="auto">Auto</option>
+                <option value="manual">Manual</option>
+            </select>
+          </div>
+          <div class="mb-6">
+            <label
+              for="timesteps"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Timesteps</label
+            >
+            <input
+              type="number"
+              id="timesteps"
+                name="timesteps"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+          <div class="mb-6" id="p_field">
+            <label
+              for="p"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >P</label
+            >
+            <input
+              type="number"
+              id="p"
+              name="p"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+          <div class="mb-6" id="d_field">
+            <label
+              for="d"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >D</label
+            >
+            <input
+              type="number"
+              id="d"
+                name="d"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+          <div class="mb-6" id="q_field">
+            <label
+              for="q"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Q</label
+            >
+            <input
+              type="number"
+              id="q"
+                name="q"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+          <div class="mb-6" id="iterations_field">
+            <label
+              for="iterations"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Iterations</label
+            >
+            <input
+              type="number"
+              id="iterations"
+                name="iterations"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+          <button
+            type="submit"
+            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-lg px-10 py-3 text-center me-2 mb-2"
+          >
+            Run
+          </button>
+          <a
+            href="{% url 'index' %}"
+            class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-lg px-10 py-3 text-center me-2 mb-2"
+            >Reset</a
+          >
+        </form>
+      </div>
+      <div class="w-full">
+        <div class="mb-4">
+            {{ chart_div|safe }}
+        </div>
+        <div class="mb-4">
+            {{ chart_predict|safe }}
+        </div>
+        <div class="flex flex-row gap-2">
+            <div class="w-1/2">
+                MAPE : {{ mape }}
+            </div>
+            <div class="w-1/2">
+                RMSE : {{ rmse }}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function toggleParametersFields() {
+        var parametersSelect = document.getElementById("parameters");
+        var pField = document.getElementById("p_field");
+        var dField = document.getElementById("d_field");
+        var qField = document.getElementById("q_field");
+
+        if (parametersSelect.value === "auto") {
+            pField.style.display = "none";
+            dField.style.display = "none";
+            qField.style.display = "none";
+        } else {
+            pField.style.display = "block";
+            dField.style.display = "block";
+            qField.style.display = "block";
+            iterations_field.style.display = "none";
+        }
+    }
+
+    // Call the function when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+        toggleParametersFields();
+    });
+
+</script>
+
+</div>
+
+{% endblock content %}
